@@ -166,7 +166,7 @@
             <div id="loginPrompt" class="text-center mb-8">
                 <button onclick="showAuthModal()" class="osu-button">
                     <i data-lucide="log-in" class="inline w-4 h-4 mr-1"></i>
-                    Login / Register
+                    Login
                 </button>
             </div>
             <!-- Filter Section -->
@@ -246,7 +246,6 @@
                 
                 <div class="auth-tabs">
                     <div class="auth-tab active" onclick="switchTab('login')">Login</div>
-                    <div class="auth-tab" onclick="switchTab('register')">Register</div>
                 </div>
                 
                 <!-- Login Form -->
@@ -267,28 +266,6 @@
                     </button>
                 </div>
                 
-                <!-- Register Form -->
-                <div id="registerForm" class="space-y-4 hidden">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Username</label>
-                        <input type="text" id="registerUsername" placeholder="Choose username" 
-                               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                        <input type="password" id="registerPassword" placeholder="Choose password" 
-                               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
-                        <input type="password" id="confirmPassword" placeholder="Confirm password" 
-                               class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500">
-                    </div>
-                    <button onclick="register()" class="osu-button w-full">
-                        <i data-lucide="user-plus" class="inline w-4 h-4 mr-1"></i>
-                        Register
-                    </button>
-                </div>
                 
                 <div class="mt-4 text-center">
                     <button onclick="hideAuthModal()" class="text-gray-500 hover:text-gray-700">
@@ -555,26 +532,6 @@
             clearAuthMessages();
         }
 
-        // Switch between login and register tabs
-        function switchTab(tab) {
-            const tabs = document.querySelectorAll('.auth-tab');
-            const loginForm = document.getElementById('loginForm');
-            const registerForm = document.getElementById('registerForm');
-            
-            tabs.forEach(t => t.classList.remove('active'));
-            
-            if (tab === 'login') {
-                tabs[0].classList.add('active');
-                loginForm.classList.remove('hidden');
-                registerForm.classList.add('hidden');
-            } else {
-                tabs[1].classList.add('active');
-                loginForm.classList.add('hidden');
-                registerForm.classList.remove('hidden');
-            }
-            
-            clearAuthMessages();
-        }
 
         // Clear auth messages
         function clearAuthMessages() {
@@ -586,9 +543,6 @@
         function clearAuthForms() {
             document.getElementById('loginUsername').value = '';
             document.getElementById('loginPassword').value = '';
-            document.getElementById('registerUsername').value = '';
-            document.getElementById('registerPassword').value = '';
-            document.getElementById('confirmPassword').value = '';
         }
 
         // Show auth message
@@ -706,41 +660,6 @@
             } catch (error) {
                 console.error('Login error:', error);
                 showAuthMessage('Login failed. Please try again.', true);
-            }
-        }
-
-        // Register function
-        async function register() {
-            const username = document.getElementById('registerUsername').value.trim();
-            const password = document.getElementById('registerPassword').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            
-            if (!username || !password || !confirmPassword) {
-                showAuthMessage('Please fill in all fields', true);
-                return;
-            }
-            
-            if (password !== confirmPassword) {
-                showAuthMessage('Passwords do not match', true);
-                return;
-            }
-            
-            if (password.length < 6) {
-                showAuthMessage('Password must be at least 6 characters', true);
-                return;
-            }
-            
-            try {
-                const hashedPassword = sha256(password);
-                await saveAccount(username, hashedPassword);
-                
-                showAuthMessage('Registration successful! You can now login.');
-                setTimeout(() => {
-                    switchTab('login');
-                }, 1500);
-                
-            } catch (error) {
-                showAuthMessage(error.message, true);
             }
         }
 
