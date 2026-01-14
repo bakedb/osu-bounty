@@ -17,26 +17,76 @@
             --osu-white: #FFFFFF;
         }
         
+        /* Theme definitions */
+        [data-theme="default"] {
+            --primary: #FF66AB;
+            --primary-dark: #E85AA0;
+            --secondary: #4A90E2;
+            --bg-gradient-start: #667eea;
+            --bg-gradient-end: #764ba2;
+        }
+        
+        [data-theme="dark"] {
+            --primary: #BB86FC;
+            --primary-dark: #9B6FDC;
+            --secondary: #03DAC6;
+            --bg-gradient-start: #1a1a2e;
+            --bg-gradient-end: #16213e;
+        }
+        
+        [data-theme="ocean"] {
+            --primary: #00BCD4;
+            --primary-dark: #00ACC1;
+            --secondary: #FF9800;
+            --bg-gradient-start: #2196F3;
+            --bg-gradient-end: #00BCD4;
+        }
+        
+        [data-theme="sunset"] {
+            --primary: #FF6B6B;
+            --primary-dark: #FF5252;
+            --secondary: #4ECDC4;
+            --bg-gradient-start: #FF6B6B;
+            --bg-gradient-end: #FFD93D;
+        }
+        
+        [data-theme="forest"] {
+            --primary: #4CAF50;
+            --primary-dark: #45A049;
+            --secondary: #8BC34A;
+            --bg-gradient-start: #2E7D32;
+            --bg-gradient-end: #66BB6A;
+        }
+        
+        [data-theme="purple"] {
+            --primary: #9C27B0;
+            --primary-dark: #7B1FA2;
+            --secondary: #E91E63;
+            --bg-gradient-start: #7B1FA2;
+            --bg-gradient-end: #9C27B0;
+        }
+        
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
             min-height: 100vh;
+            transition: background 0.5s ease;
         }
         
         .osu-card {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            border: 2px solid var(--osu-pink);
+            border: 2px solid var(--primary);
             transition: all 0.3s ease;
         }
         
         .osu-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 102, 171, 0.3);
-            border-color: var(--osu-pink-dark);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary-dark);
         }
         
         .osu-button {
-            background: var(--osu-pink);
+            background: var(--primary);
             color: white;
             padding: 8px 16px;
             border-radius: 4px;
@@ -45,7 +95,7 @@
         }
         
         .osu-button:hover {
-            background: var(--osu-pink-dark);
+            background: var(--primary-dark);
             transform: scale(1.05);
         }
         
@@ -102,7 +152,7 @@
             padding: 32px;
             max-width: 400px;
             width: 90%;
-            border: 2px solid var(--osu-pink);
+            border: 2px solid var(--primary);
         }
         
         .auth-tabs {
@@ -121,8 +171,8 @@
         }
         
         .auth-tab.active {
-            border-bottom-color: var(--osu-pink);
-            color: var(--osu-pink);
+            border-bottom-color: var(--primary);
+            color: var(--primary);
             font-weight: bold;
         }
         
@@ -322,11 +372,11 @@
         }
         
         .mod-checkbox.selected {
-            background: linear-gradient(135deg, var(--osu-pink), var(--osu-pink-dark));
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
-            border-color: var(--osu-pink);
+            border-color: var(--primary);
             transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(255, 102, 171, 0.4);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
         }
         
         .mod-checkbox.excluded {
@@ -379,10 +429,28 @@
     <div class="min-h-screen p-4">
         <!-- Header -->
         <header class="text-center mb-8">
-            <h1 class="text-5xl font-bold text-white mb-2" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
-                osu! Bounty Portal
-            </h1>
-            <p class="text-xl text-white/90">Complete bounties and earn rewards!</p>
+            <div class="flex justify-between items-center max-w-4xl mx-auto">
+                <div class="flex-1"></div>
+                <div class="text-center">
+                    <h1 class="text-5xl font-bold text-white mb-2" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+                        osu! Bounty Portal
+                    </h1>
+                    <p class="text-xl text-white/90">Complete bounties and earn rewards!</p>
+                </div>
+                <div class="flex-1 flex justify-end">
+                    <div class="theme-switcher">
+                        <select id="themeSelector" onchange="changeTheme(this.value)" 
+                                class="bg-white/20 backdrop-blur text-white border border-white/30 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-white/50">
+                            <option value="default">Default</option>
+                            <option value="dark">Dark</option>
+                            <option value="ocean">Ocean</option>
+                            <option value="sunset">Sunset</option>
+                            <option value="forest">Forest</option>
+                            <option value="purple">Purple</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </header>
 
         <!-- Main Content -->
@@ -565,7 +633,7 @@
         <!-- Footer -->
         <footer class="text-center mt-16 pb-8">
             <p class="text-white/80">
-                Made with ❤️ for the osu! community | bakedb and this website are not affiliated with osu! or ppy.
+                Made with &lt;3 by bakedb | bakedb and this website are not affiliated with osu! or ppy.
             </p>
         </footer>
     </div>
@@ -802,11 +870,22 @@
             initializeModFilter();
             loadBounties();
             
+            // Load saved theme
+            const savedTheme = localStorage.getItem('osuBountyTheme') || 'default';
+            document.getElementById('themeSelector').value = savedTheme;
+            changeTheme(savedTheme);
+            
             // Add enter key support for search
             document.getElementById('searchInput').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') applyFilters();
             });
         });
+
+        // Change theme function
+        function changeTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('osuBountyTheme', theme);
+        }
 
         // Load bounties from Google Sheets
         async function loadBounties() {
