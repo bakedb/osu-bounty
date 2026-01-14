@@ -136,6 +136,243 @@
             justify-content: space-between;
             align-items: center;
         }
+        
+        .mod-icons {
+            display: flex;
+            gap: 8px;
+            margin-top: 4px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .mod-icon-container {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .mod-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            transition: transform 0.2s ease;
+            cursor: pointer;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+        
+        .mod-icon.required {
+            background: rgba(255, 102, 171, 0.1);
+        }
+        
+        .mod-icon.allowed {
+            background: rgba(74, 144, 226, 0.1);
+            opacity: 0.8;
+        }
+        
+        .mod-icon.allowed:hover {
+            opacity: 1;
+        }
+        
+        .mod-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .mod-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: nowrap;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            margin-bottom: 4px;
+        }
+        
+        .mod-icon-container:hover .mod-tooltip {
+            opacity: 1;
+        }
+        
+        .bounty-reward {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .reward-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: nowrap;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            margin-bottom: 4px;
+            max-width: 200px;
+            white-space: normal;
+        }
+        
+        .bounty-reward:hover .reward-tooltip {
+            opacity: 1;
+        }
+        
+        .mod-filter-section {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-left: 2px solid var(--osu-pink);
+            transition: right 0.3s ease;
+            z-index: 999;
+            overflow-y: auto;
+        }
+        
+        .mod-filter-section.open {
+            right: 0;
+        }
+        
+        .mod-filter-header {
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 10;
+        }
+        
+        .mod-filter-content {
+            padding: 20px;
+        }
+        
+        .mod-trigger {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--osu-pink);
+            color: white;
+            border: none;
+            border-radius: 8px 0 0 8px;
+            padding: 12px 8px;
+            cursor: pointer;
+            z-index: 998;
+            transition: all 0.3s ease;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+        
+        .mod-trigger:hover {
+            background: var(--osu-pink-dark);
+            padding-left: 12px;
+        }
+        
+        .mod-category {
+            margin-bottom: 12px;
+        }
+        
+        .mod-category-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        
+        .mod-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .mod-checkbox {
+            display: flex;
+            align-items: center;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mod-checkbox:hover {
+            background: #f8f8f8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .mod-checkbox.selected {
+            background: linear-gradient(135deg, var(--osu-pink), var(--osu-pink-dark));
+            color: white;
+            border-color: var(--osu-pink);
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 102, 171, 0.4);
+        }
+        
+        .mod-checkbox.excluded {
+            background: linear-gradient(135deg, #ff4444, #cc0000);
+            color: white;
+            border-color: #ff4444;
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 68, 68, 0.4);
+        }
+        
+        .mod-checkbox-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+            border-radius: 4px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+        
+        .mod-checkbox.selected .mod-checkbox-icon,
+        .mod-checkbox.excluded .mod-checkbox-icon {
+            filter: brightness(1.2) contrast(1.1);
+        }
+        
+        .mod-checkbox input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .mod-filter-logic {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            align-items: center;
+        }
+        
+        .logic-radio {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .logic-radio input {
+            margin-right: 4px;
+        }
     </style>
 </head>
 <body>
@@ -207,6 +444,53 @@
                         <i data-lucide="refresh-cw" class="inline w-4 h-4 mr-1"></i>
                         Reset
                     </button>
+                </div>
+            </section>
+
+            <!-- Mod Filter Trigger Button -->
+            <button class="mod-trigger" onclick="toggleModFilter()">
+                <i data-lucide="settings" class="w-4 h-4"></i>
+                Mod Filters
+            </button>
+
+            <!-- Mod Filter Popup -->
+            <section class="mod-filter-section" id="modFilterSection">
+                <div class="mod-filter-header">
+                    <h3 class="text-lg font-semibold text-gray-800">Mod Filters</h3>
+                    <button onclick="toggleModFilter()" class="text-gray-500 hover:text-gray-700">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                
+                <div class="mod-filter-content">
+                    <div class="mod-filter-logic">
+                        <span class="text-sm text-gray-600 font-medium">Logic:</span>
+                        <label class="logic-radio">
+                            <input type="radio" name="modLogic" value="and" checked>
+                            <span>AND</span>
+                        </label>
+                        <label class="logic-radio">
+                            <input type="radio" name="modLogic" value="or">
+                            <span>OR</span>
+                        </label>
+                        <label class="logic-radio">
+                            <input type="radio" name="modLogic" value="not">
+                            <span>NOT</span>
+                        </label>
+                    </div>
+                    
+                    <div id="modCategories"></div>
+                    
+                    <div class="mt-6 flex gap-2">
+                        <button onclick="applyModFilter()" class="osu-button flex-1">
+                            <i data-lucide="filter" class="inline w-4 h-4 mr-1"></i>
+                            Apply Filter
+                        </button>
+                        <button onclick="clearModFilter()" class="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 transition">
+                            <i data-lucide="x" class="inline w-4 h-4 mr-1"></i>
+                            Clear
+                        </button>
+                    </div>
                 </div>
             </section>
 
@@ -295,10 +579,231 @@
         let allBounties = [];
         let filteredBounties = [];
 
+        // Mod database with full names and version compatibility
+        const modDatabase = {
+            // Difficulty Reduction
+            'EZ': { name: 'Easy', version: 'both' },
+            'NF': { name: 'No Fail', version: 'both' },
+            'HT': { name: 'Half Time', version: 'both' },
+            'DC': { name: 'Daycore', version: 'both' },
+            'NR': { name: 'No Release', version: 'lazer' },
+            
+            // Difficulty Increase
+            'HR': { name: 'Hard Rock', version: 'both' },
+            'SD': { name: 'Sudden Death', version: 'both' },
+            'PF': { name: 'Perfect', version: 'both' },
+            'DT': { name: 'Double Time', version: 'both' },
+            'NC': { name: 'Nightcore', version: 'both' },
+            'FI': { name: 'Fade In', version: 'lazer' },
+            'HD': { name: 'Hidden', version: 'both' },
+            'CO': { name: 'Cover', version: 'lazer' },
+            'FL': { name: 'Flashlight', version: 'both' },
+            'BL': { name: 'Blinds', version: 'lazer' },
+            'ST': { name: 'Strict Tracking', version: 'lazer' },
+            'AC': { name: 'Accuracy Challenge', version: 'lazer' },
+            
+            // Automation
+            'AT': { name: 'Autoplay', version: 'both' },
+            'CN': { name: 'Cinema', version: 'both' },
+            'RX': { name: 'Relax', version: 'both' },
+            'AP': { name: 'Autopilot', version: 'both' },
+            'SO': { name: 'Spun Out', version: 'both' },
+            
+            // Conversion
+            'TP': { name: 'Target Practice', version: 'lazer' },
+            'DA': { name: 'Difficulty Adjust', version: 'lazer' },
+            'CL': { name: 'Classic', version: 'lazer' },
+            'RD': { name: 'Random', version: 'lazer' },
+            'MR': { name: 'Mirror', version: 'lazer' },
+            'AL': { name: 'Alternate', version: 'lazer' },
+            'SW': { name: 'Swap', version: 'both' },
+            'SG': { name: 'Single Tap', version: 'lazer' },
+            'IN': { name: 'Invert', version: 'both' },
+            'CS': { name: 'Constant Speed', version: 'both' },
+            'HO': { name: 'Hold Off', version: 'both' },
+            '1K': { name: '1 Key', version: 'both' },
+            '2K': { name: '2 Key', version: 'both' },
+            '3K': { name: '3 Key', version: 'both' },
+            '4K': { name: '4 Key', version: 'both' },
+            '5K': { name: '5 Key', version: 'both' },
+            '6K': { name: '6 Key', version: 'both' },
+            '7K': { name: '7 Key', version: 'both' },
+            '8K': { name: '8 Key', version: 'both' },
+            '9K': { name: '9 Key', version: 'both' },
+            '10K': { name: '10 Key', version: 'both' },
+            
+            // Fun (Lazer only)
+            'TR': { name: 'Transform', version: 'lazer' },
+            'WG': { name: 'Wiggle', version: 'lazer' },
+            'SI': { name: 'Spin In', version: 'lazer' },
+            'GR': { name: 'Grow', version: 'lazer' },
+            'DF': { name: 'Deflate', version: 'lazer' },
+            'WU': { name: 'Wind Up', version: 'lazer' },
+            'WD': { name: 'Wind Down', version: 'lazer' },
+            'TC': { name: 'Traceable', version: 'lazer' },
+            'BR': { name: 'Barrel Roll', version: 'lazer' },
+            'AD': { name: 'Approach Different', version: 'lazer' },
+            'FF': { name: 'Floating Fruits', version: 'lazer' },
+            'MU': { name: 'Muted', version: 'lazer' },
+            'NS': { name: 'No Scope', version: 'lazer' },
+            'MG': { name: 'Magnetised', version: 'lazer' },
+            'RP': { name: 'Repel', version: 'lazer' },
+            'AS': { name: 'Adaptive Speed', version: 'lazer' },
+            'FR': { name: 'Freeze Frame', version: 'lazer' },
+            'BU': { name: 'Bubbles', version: 'lazer' },
+            'SY': { name: 'Synesthesia', version: 'lazer' },
+            'DP': { name: 'Depth', version: 'lazer' },
+            'BM': { name: 'Bloom', version: 'lazer' },
+            
+            // System
+            'SV2': { name: 'Score V2', version: 'stable' },
+            'TD': { name: 'Touch Device', version: 'both' }
+        };
+
+        // Get mod info from database
+        function getModInfo(modCode) {
+            return modDatabase[modCode.toUpperCase()] || { name: modCode, version: 'unknown' };
+        }
+
+        // Mod categories for filtering
+        const modCategories = {
+            'Difficulty Reduction': ['EZ', 'NF', 'HT', 'DC', 'NR'],
+            'Difficulty Increase': ['HR', 'SD', 'PF', 'DT', 'NC', 'FI', 'HD', 'CO', 'FL', 'BL', 'ST', 'AC'],
+            'Automation': ['AT', 'CN', 'RX', 'AP', 'SO'],
+            'Conversion': ['TP', 'DA', 'CL', 'RD', 'MR', 'AL', 'SW', 'SG', 'IN', 'CS', 'HO', '1K', '2K', '3K', '4K', '5K', '6K', '7K', '8K', '9K', '10K'],
+            'Fun (Lazer only)': ['TR', 'WG', 'SI', 'GR', 'DF', 'WU', 'WD', 'TC', 'BR', 'AD', 'FF', 'MU', 'NS', 'MG', 'RP', 'AS', 'FR', 'BU', 'SY', 'DP', 'BM'],
+            'System': ['SV2', 'TD']
+        };
+
+        // Initialize mod filter UI
+        function initializeModFilter() {
+            const container = document.getElementById('modCategories');
+            container.innerHTML = '';
+
+            Object.entries(modCategories).forEach(([category, mods]) => {
+                const availableMods = mods.filter(mod => hasModIcon(mod));
+                
+                if (availableMods.length === 0) return; // Skip empty categories
+                
+                const categoryDiv = document.createElement('div');
+                categoryDiv.className = 'mod-category';
+
+                const titleDiv = document.createElement('div');
+                titleDiv.className = 'mod-category-title';
+                titleDiv.textContent = category;
+                categoryDiv.appendChild(titleDiv);
+
+                const optionsDiv = document.createElement('div');
+                optionsDiv.className = 'mod-options';
+
+                availableMods.forEach(mod => {
+                    const modInfo = getModInfo(mod);
+                    const checkboxDiv = document.createElement('div');
+                    checkboxDiv.className = 'mod-checkbox';
+                    checkboxDiv.dataset.mod = mod;
+                    checkboxDiv.title = `${modInfo.name} (${modInfo.version === 'both' ? 'Stable + Lazer' : modInfo.version.charAt(0).toUpperCase() + modInfo.version.slice(1)})`;
+                    
+                    const input = document.createElement('input');
+                    input.type = 'checkbox';
+                    input.id = `mod-${mod}`;
+                    input.onchange = () => updateModSelection(mod);
+                    
+                    const icon = document.createElement('img');
+                    icon.src = `icons/${mod.toLowerCase()}.png`;
+                    icon.alt = mod;
+                    icon.className = 'mod-checkbox-icon';
+                    
+                    const label = document.createElement('label');
+                    label.htmlFor = `mod-${mod}`;
+                    label.textContent = mod;
+                    label.title = modInfo.name; // Full name on text hover too
+                    
+                    checkboxDiv.appendChild(input);
+                    checkboxDiv.appendChild(icon);
+                    checkboxDiv.appendChild(label);
+                    optionsDiv.appendChild(checkboxDiv);
+                });
+
+                categoryDiv.appendChild(optionsDiv);
+                container.appendChild(categoryDiv);
+            });
+        }
+
+        // Check if mod has an icon
+        function hasModIcon(mod) {
+            const availableIcons = [
+                'ad', 'al', 'ap', 'as', 'bl', 'bm', 'br', 'bu', 'cl', 'cn', 'da', 'dc', 'df', 'dp', 'dt', 'ez', 'fl', 'fr', 'gr', 'hd', 'hr', 'ht', 'mg', 'mr', 'nc', 'nf', 'ns', 'nr', 'pf', 'rd', 'rp', 'rx', 'sg', 'si', 'so', 'st', 'sv2', 'sy', 'tc', 'td', 'tr', 'wg', 'wu', 'wd'
+            ];
+            return availableIcons.includes(mod.toLowerCase());
+        }
+
+        // Toggle mod filter popup
+        function toggleModFilter() {
+            const filterSection = document.getElementById('modFilterSection');
+            filterSection.classList.toggle('open');
+        }
+
+        // Update mod selection state
+        function updateModSelection(mod) {
+            const checkbox = document.querySelector(`[data-mod="${mod}"]`);
+            const input = checkbox.querySelector('input');
+            
+            if (input.checked) {
+                checkbox.classList.add('selected');
+                checkbox.classList.remove('excluded');
+            } else {
+                checkbox.classList.remove('selected');
+                checkbox.classList.remove('excluded');
+            }
+        }
+
+        // Apply mod filter
+        function applyModFilter() {
+            const selectedMods = Array.from(document.querySelectorAll('.mod-checkbox input:checked'))
+                .map(cb => cb.parentElement.dataset.mod);
+            
+            const logic = document.querySelector('input[name="modLogic"]:checked').value;
+            
+            if (selectedMods.length === 0) {
+                displayBounties(allBounties);
+                return;
+            }
+
+            filteredBounties = allBounties.filter(bounty => {
+                const bountyMods = [
+                    ...(bounty.requiredMods || []),
+                    ...(bounty.allowedMods || [])
+                ];
+
+                switch (logic) {
+                    case 'and':
+                        return selectedMods.every(mod => bountyMods.includes(mod));
+                    case 'or':
+                        return selectedMods.some(mod => bountyMods.includes(mod));
+                    case 'not':
+                        return !selectedMods.some(mod => bountyMods.includes(mod));
+                    default:
+                        return true;
+                }
+            });
+
+            displayBounties(filteredBounties);
+        }
+
+        // Clear mod filter
+        function clearModFilter() {
+            document.querySelectorAll('.mod-checkbox input').forEach(input => {
+                input.checked = false;
+                updateModSelection(input.parentElement.dataset.mod);
+            });
+            displayBounties(allBounties);
+        }
+
         // Initialize the app
         document.addEventListener('DOMContentLoaded', function() {
             lucide.createIcons();
             initAuth();
+            initializeModFilter();
             loadBounties();
             
             // Add enter key support for search
@@ -351,7 +856,7 @@
             for (let i = startIndex; i < lines.length; i++) {
                 const values = parseCSVLine(lines[i]);
                 if (values.length >= 8) {
-                    bounties.push({
+                    const bounty = {
                         title: values[0] || 'Untitled Bounty',
                         map: values[1] || 'Unknown Map',
                         beatmapId: values[2] || '',
@@ -360,7 +865,41 @@
                         starRating: parseFloat(values[5]) || 0,
                         bounty: parseFloat(values[6]) || 0,
                         description: values[7] || 'No description available'
-                    });
+                    };
+                    
+                    // Add custom rewards (Column I, index 8)
+                    if (values.length > 8 && values[8]) {
+                        bounty.customReward = values[8];
+                    }
+                    
+                    // Parse mods (Column J and beyond, index 9+)
+                    if (values.length > 9) {
+                        bounty.requiredMods = [];
+                        bounty.allowedMods = [];
+                        
+                        for (let j = 9; j < values.length; j++) {
+                            if (values[j] && values[j].trim()) {
+                                const cellContent = values[j].trim();
+                                
+                                // Split cell content by commas to handle multiple mods in one cell
+                                const modStrings = cellContent.split(',').map(s => s.trim()).filter(s => s);
+                                
+                                for (const modString of modStrings) {
+                                    // Check if mod is marked as required (prefix with !) or allowed (prefix with ?)
+                                    if (modString.startsWith('!')) {
+                                        bounty.requiredMods.push(modString.substring(1));
+                                    } else if (modString.startsWith('?')) {
+                                        bounty.allowedMods.push(modString.substring(1));
+                                    } else {
+                                        // Default to required if no prefix
+                                        bounty.requiredMods.push(modString);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    bounties.push(bounty);
                 }
             }
             
@@ -414,11 +953,91 @@
         function createBountyCard(bounty) {
             const beatmapUrl = bounty.beatmapId ? `https://osu.ppy.sh/b/${bounty.beatmapId}` : '#';
             
+            // Display bounty amount or custom reward
+            let rewardDisplay = '';
+            if (bounty.customReward) {
+                rewardDisplay = `
+                    <div class="bounty-reward">
+                        <div class="text-2xl font-bold bounty-amount">Custom Reward</div>
+                        <div class="reward-tooltip">${escapeHtml(bounty.customReward)}</div>
+                    </div>
+                `;
+            } else {
+                rewardDisplay = `<div class="text-2xl font-bold bounty-amount">$${bounty.bounty.toFixed(2)}</div>`;
+            }
+            
+            // Generate mod icons HTML
+            let modsDisplay = '';
+            const hasRequiredMods = bounty.requiredMods && bounty.requiredMods.length > 0;
+            const hasAllowedMods = bounty.allowedMods && bounty.allowedMods.length > 0;
+            
+            if (hasRequiredMods || hasAllowedMods) {
+                let modSections = [];
+                
+                // Required mods section
+                if (hasRequiredMods) {
+                    const requiredIcons = bounty.requiredMods.map(mod => {
+                        const modCode = mod.toUpperCase();
+                        const modInfo = getModInfo(modCode);
+                        const iconPath = `icons/${modCode.toLowerCase()}.png`;
+                        const versionLabel = modInfo.version === 'both' ? '' : ` (${modInfo.version})`;
+                        const tooltipText = `${modInfo.name}${versionLabel}`;
+                        
+                        return `
+                            <div class="mod-icon-container">
+                                <img src="${iconPath}" alt="${mod}" class="mod-icon required" onerror="this.style.display='none'">
+                                <div class="mod-tooltip">Required: ${escapeHtml(tooltipText)}</div>
+                            </div>
+                        `;
+                    }).join('');
+                    
+                    modSections.push(`
+                        <div class="flex items-start text-gray-600">
+                            <i data-lucide="lock" class="w-4 h-4 mr-2 text-pink-600 mt-1"></i>
+                            <div class="flex-1">
+                                <span class="font-semibold text-pink-600">Required:</span>
+                                <div class="mod-icons">${requiredIcons}</div>
+                            </div>
+                        </div>
+                    `);
+                }
+                
+                // Allowed mods section
+                if (hasAllowedMods) {
+                    const allowedIcons = bounty.allowedMods.map(mod => {
+                        const modCode = mod.toUpperCase();
+                        const modInfo = getModInfo(modCode);
+                        const iconPath = `icons/${modCode.toLowerCase()}.png`;
+                        const versionLabel = modInfo.version === 'both' ? '' : ` (${modInfo.version})`;
+                        const tooltipText = `${modInfo.name}${versionLabel}`;
+                        
+                        return `
+                            <div class="mod-icon-container">
+                                <img src="${iconPath}" alt="${mod}" class="mod-icon allowed" onerror="this.style.display='none'">
+                                <div class="mod-tooltip">Allowed: ${escapeHtml(tooltipText)}</div>
+                            </div>
+                        `;
+                    }).join('');
+                    
+                    modSections.push(`
+                        <div class="flex items-start text-gray-600">
+                            <i data-lucide="unlock" class="w-4 h-4 mr-2 text-blue-600 mt-1"></i>
+                            <div class="flex-1">
+                                <span class="font-semibold text-blue-600">Allowed:</span>
+                                <div class="mod-icons">${allowedIcons}</div>
+                            </div>
+                        </div>
+                    `);
+                }
+                
+                modsDisplay = modSections.join('');
+            }
+            
             return `
                 <div class="osu-card rounded-lg p-6">
                     <div class="flex justify-between items-start mb-4">
                         <h3 class="text-xl font-bold text-gray-800 flex-1 mr-2">${escapeHtml(bounty.title)}</h3>
-                        <div class="text-2xl font-bold bounty-amount">$${bounty.bounty.toFixed(2)}</div>
+                        ${rewardDisplay}
                     </div>
                     
                     <div class="space-y-2 mb-4">
@@ -443,6 +1062,8 @@
                             <i data-lucide="star" class="w-4 h-4 mr-1"></i>
                             <span class="font-semibold">${bounty.starRating.toFixed(2)}⭐</span>
                         </div>
+                        
+                        ${modsDisplay}
                     </div>
                     
                     <div class="border-t pt-3">
